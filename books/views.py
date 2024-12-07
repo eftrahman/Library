@@ -11,21 +11,24 @@ from .models import Book
 
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('homepage')  # Redirect authenticated users
+        return redirect('homepage') 
     else:
-        if request.method == 'POST':  # POST should be uppercase
-            username = request.POST.get('username')  # Use request.POST, not request.post
+        if request.method == 'POST': 
+            username = request.POST.get('username')  
             password = request.POST.get('password')
 
-            user = authenticate(request, username=username, password=password)  # Fix typo: `aauthenticate` -> `authenticate`
+            user = authenticate(request, username=username, password=password)  
 
             if user is not None:
                 login(request, user)
                 return redirect('homepage')
             else:
-                messages.info(request, 'Username or password is incorrect')  # Fix typo: `messege` -> `messages`
+                messages.info(request, 'Username or password is incorrect')  
 
         return render(request, 'books/login.html')
+
+def logoutButton(request):
+    
 
 def homepage(request):
     return render(request, 'books/homepage.html')
