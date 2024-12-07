@@ -28,7 +28,8 @@ def loginPage(request):
         return render(request, 'books/login.html')
 
 def logoutButton(request):
-    
+    logout(request)
+    return redirect('homepage')
 
 def homepage(request):
     return render(request, 'books/homepage.html')
